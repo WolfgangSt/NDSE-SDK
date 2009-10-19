@@ -22,8 +22,9 @@
 
 struct load_result
 {
-    unsigned long arm9_entry;
-    unsigned long arm7_entry;
+	unsigned long flags;
+	unsigned long arm9_entry;
+	unsigned long arm7_entry;
 };
 
 struct memory_block;
