@@ -1,6 +1,8 @@
 #ifndef _NDSE_H_
 #define _NDSE_H_
 
+#include <cstring>
+
 #ifdef WIN32
 #define STDCALL __stdcall 
 #else
