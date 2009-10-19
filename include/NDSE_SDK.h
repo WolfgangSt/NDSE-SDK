@@ -20,12 +20,17 @@
 #pragma warning(push)
 #pragma warning(disable: 4200)
 
+struct Fiber;
+typedef void (fiber_cb)(Fiber *f);
+
 struct load_result
 {
 	unsigned long flags;
 	unsigned long arm9_entry;
 	unsigned long arm7_entry;
 };
+
+enum load_hint { LH_UNKNOWN, LH_ARM7, LH_ARM9, LH_RAW7, LH_RAW9 };
 
 struct memory_block;
 
@@ -94,13 +99,19 @@ IMPORT bool STDCALL ARM9_Run(unsigned long addr);
 IMPORT void STDCALL ARM9_Log(log_callback cb);
 IMPORT void STDCALL ARM9_Interrupt(unsigned long intr);
 IMPORT void STDCALL ARM9_AddIOCallback(io_callback r, io_callback w);
+IMPORT void STDCALL ARM9_Init(fiber_cb cb);
+IMPORT void STDCALL ARM9_SetPC(unsigned long addr);
+IMPORT bool STDCALL ARM9_Continue();
 
 IMPORT memory_block* STDCALL ARM7_GetPage(unsigned long addr);
 IMPORT void STDCALL ARM7_Interrupt(unsigned long intr);
 IMPORT void STDCALL ARM7_AddIOCallback(io_callback r, io_callback w);
+IMPORT void STDCALL ARM7_Init(fiber_cb cb);
+IMPORT void STDCALL ARM7_SetPC(unsigned long addr);
+IMPORT bool STDCALL ARM7_Continue();
 
 IMPORT void STDCALL DEFAULT_Log(log_callback cb);
-IMPORT bool STDCALL UTIL_LoadFile(const char *filename, load_result *result);
+IMPORT bool STDCALL UTIL_LoadFile(const char *filename, load_result *result, load_hint lh);
 IMPORT memory_region_base* STDCALL MEM_GetVRAM(int bank);
 IMPORT unsigned long STDCALL PageSize();
 IMPORT unsigned long STDCALL DebugMax();
