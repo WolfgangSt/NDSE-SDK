@@ -1,6 +1,2 @@
-Enabled cia hook
-Test test
-Just updated README... again
-maybe works now? ... now?
-wtf is wrong with the setup?
-hopefully this commit works...
+This is very basic yet and will become subject to major changes
+in future. However all plugins will derive from NDSE_SDK.h for now.
