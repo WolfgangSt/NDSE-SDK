@@ -3,7 +3,7 @@
 
 #include "modes.h"
 namespace NDSE {
-#include "../NDSE_simple.h"
+#include <NDSE_SDK.h>
 };
 
 class CAbstractBG
